@@ -20,6 +20,6 @@ Get Single Existing Post
 
 Get Non-Existing Post Returns 404
     Create Session    jsonplaceholder    ${BASE_URL}    verify=${True}
-    ${response}=    GET On Session    jsonplaceholder    /posts/999999
+    ${response}=    GET On Session    jsonplaceholder    /posts/999999    expected_status=any
     Should Be Equal As Integers    ${response.status_code}    404
     Log To Console    Got ${response.status_code} for non-existing post
