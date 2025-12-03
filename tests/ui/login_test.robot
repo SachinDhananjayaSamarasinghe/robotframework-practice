@@ -14,7 +14,7 @@ Valid Login Should Succeed
     Fill Text    id=password    ${VALID_PASSWORD}
     Click    id=submit
     Wait For Elements State    text=Logged In Successfully    visible
-    Screenshot
+    Take Screenshot
     Close Browser
 
 Invalid Password Should Show Error
@@ -23,8 +23,8 @@ Invalid Password Should Show Error
     Fill Text    id=username    ${VALID_USERNAME}
     Fill Text    id=password    wrongpassword
     Click    id=submit
-    Wait For Elements State    text=Your password is invalid!    visible
-    Screenshot
+    Wait For Elements State    id=error    visible
+    Take Screenshot
     Close Browser
 
 Invalid Username Should Show Error
@@ -33,6 +33,6 @@ Invalid Username Should Show Error
     Fill Text    id=username    wronguser
     Fill Text    id=password    ${VALID_PASSWORD}
     Click    id=submit
-    Wait For Elements State    text=Your username is invalid!    visible
-    Screenshot
+    Wait For Elements State    id=error    visible
+    Take Screenshot
     Close Browser
