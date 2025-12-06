@@ -2,6 +2,8 @@ import json
 import random
 import string
 
+ROBOT_LIBRARY_SCOPE = "GLOBAL"
+
 
 class QALibrary:
 
