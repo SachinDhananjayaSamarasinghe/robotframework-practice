@@ -2,6 +2,7 @@ import json
 import random
 import string
 
+
 class QALibrary:
 
     def generate_random_id(self, length=8):
