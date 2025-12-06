@@ -1,5 +1,5 @@
 *** Settings ***
-Library    ../libraries/qa_library.py
+Library    D:/Training/GitHub/robotframework-practice/libraries/qa_library.py
 
 *** Test Cases ***
 Using New QA Keywords
