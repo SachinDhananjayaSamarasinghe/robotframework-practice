@@ -1,5 +1,5 @@
 *** Settings ***
-Library    ../libraries/qa_library.py
+Library    libraries.qa_library.QALibrary
 
 *** Test Cases ***
 Using New QA Keywords
