@@ -1,4 +1,5 @@
 {
     "name": "TestUser",
-    "role": "QA"
+    "role": "QA",
+    "experience": 3
 }
