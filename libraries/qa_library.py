@@ -1,4 +1,5 @@
 import json
+import os
 import random
 import string
 
@@ -7,13 +8,21 @@ ROBOT_LIBRARY_SCOPE = "GLOBAL"
 
 class QALibrary:
 
+    def __init__(self):
+        # Automatically locate your /data folder
+        self.data_dir = os.path.join(os.getcwd(), "data")
+
+    # -------------------------------
+    # Existing Keywords
+    # -------------------------------
+
     def generate_random_id(self, length=8):
         """Generates a random alphanumeric ID of given length."""
         characters = string.ascii_uppercase + string.digits
         return ''.join(random.choice(characters) for _ in range(length))
 
     def read_json_file(self, file_path):
-        """Reads and returns JSON content from a file."""
+        """Reads and returns JSON content from an absolute or relative file path."""
         with open(file_path, "r", encoding="utf-8") as f:
             return json.load(f)
 
@@ -24,3 +33,25 @@ class QALibrary:
                 f"Status code mismatch! Expected {expected_status}, got {actual_status}"
             )
         return True
+
+    # --------------------------------------
+    # New Keywords
+    # --------------------------------------
+
+    def load_json(self, filename):
+        """Load a JSON file from the /data directory."""
+        path = os.path.join(self.data_dir, filename)
+
+        if not os.path.exists(path):
+            raise FileNotFoundError(f"JSON file not found: {path}")
+
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
+
+    def get_json_value(self, json_data, key):
+        """Return a value from a JSON dictionary."""
+        return json_data.get(key)
+
+    def generate_random_int(self, min_val=1000, max_val=9999):
+        """Generate a random integer ID."""
+        return random.randint(min_val, max_val)
