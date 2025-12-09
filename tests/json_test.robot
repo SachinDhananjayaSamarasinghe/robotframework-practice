@@ -15,4 +15,5 @@ Validate JSON Data
 
 Generate And Check Random Id
     ${id}=    Generate Random Id
-    Should Be True    ${id} > 1000
+    Log    Generated ID: ${id}
+    Length Should Be    ${id}    8
