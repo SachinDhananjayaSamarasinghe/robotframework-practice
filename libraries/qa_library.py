@@ -2,6 +2,7 @@ import json
 import os
 import random
 import string
+import requests
 
 ROBOT_LIBRARY_SCOPE = "GLOBAL"
 
@@ -55,3 +56,23 @@ class QALibrary:
     def generate_random_int(self, min_val=1000, max_val=9999):
         """Generate a random integer ID."""
         return random.randint(min_val, max_val)
+
+    # -------------------------------
+    # API Keywords (NEW)
+    # -------------------------------
+
+    def get_request(self, url):
+        """Send a GET request and return response object."""
+        return requests.get(url)
+
+    def validate_response_status_code(self, response, expected_code):
+        """Validate HTTP response status code."""
+        actual = response.status_code
+        if actual != int(expected_code):
+            raise AssertionError(
+                f"Expected status {expected_code}, but got {actual}"
+            )
+
+    def get_json_response(self, response):
+        """Return JSON body from response."""
+        return response.json()
