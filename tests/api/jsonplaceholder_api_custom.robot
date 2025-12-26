@@ -14,5 +14,5 @@ Get Single Post And Validate Content (Custom Library)
     Validate Response Status Code    ${response}    200
 
     ${json}=    Get Json Response    ${response}
-    Should Be Equal    ${json}[id]    1
+    Should Be Equal As Integers    ${json}[id]    1
     Should Not Be Empty    ${json}[title]
