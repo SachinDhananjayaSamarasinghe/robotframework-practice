@@ -76,3 +76,8 @@ class QALibrary:
     def get_json_response(self, response):
         """Return JSON body from response."""
         return response.json()
+
+    def get_request_allow_failure(self, url):
+        """Send GET request and return response without raising exceptions."""
+        response = requests.get(url)
+        return response
