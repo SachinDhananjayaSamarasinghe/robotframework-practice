@@ -81,3 +81,22 @@ class QALibrary:
         """Send GET request and return response without raising exceptions."""
         response = requests.get(url)
         return response
+
+    # Testing with headers
+
+    def load_environment(self, env_name):
+        """Load environment configuration."""
+        config_path = os.path.join(os.getcwd(), "config", "env.json")
+
+        with open(config_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+
+        if env_name not in data:
+            raise ValueError(f"Environment '{env_name}' not found")
+
+        return data[env_name]
+
+    def get_with_headers(self, url, headers):
+        """Send GET request with headers."""
+        response = requests.get(url, headers=headers)
+        return response
