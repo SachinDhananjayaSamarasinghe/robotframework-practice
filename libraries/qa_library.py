@@ -84,6 +84,14 @@ class QALibrary:
 
     # Testing with headers
 
+    def validate_status_code(self, response, expected_status):
+    """Validate HTTP status code from a response object."""
+    actual = response.status_code
+    if actual != int(expected_status):
+        raise AssertionError(
+            f"Expected status {expected_status}, but got {actual}"
+        )
+
     def load_environment(self, env_name):
         """Load environment configuration."""
         config_path = os.path.join(os.getcwd(), "config", "env.json")
