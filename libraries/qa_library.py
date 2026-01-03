@@ -27,11 +27,12 @@ class QALibrary:
         with open(file_path, "r", encoding="utf-8") as f:
             return json.load(f)
 
-    def validate_status_code(self, actual_status, expected_status):
-        """Validates that an API status code matches the expected one."""
-        if int(actual_status) != int(expected_status):
+    def validate_status_code(self, response, expected_status):
+        """Validate HTTP status code from a response object."""
+        actual = response.status_code
+        if actual != int(expected_status):
             raise AssertionError(
-                f"Status code mismatch! Expected {expected_status}, got {actual_status}"
+                f"Expected status {expected_status}, but got {actual}"
             )
         return True
 
@@ -83,14 +84,6 @@ class QALibrary:
         return response
 
     # Testing with headers
-
-    def validate_status_code(self, response, expected_status):
-    """Validate HTTP status code from a response object."""
-    actual = response.status_code
-    if actual != int(expected_status):
-        raise AssertionError(
-            f"Expected status {expected_status}, but got {actual}"
-        )
 
     def load_environment(self, env_name):
         """Load environment configuration."""
