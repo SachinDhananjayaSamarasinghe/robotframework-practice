@@ -101,3 +101,39 @@ class QALibrary:
         """Send GET request with headers."""
         response = requests.get(url, headers=headers)
         return response
+
+    # Testing with response schema validation
+
+    def validate_post_schema(self, post):
+        """
+        Validate required fields and their data types
+        """
+        required_fields = {
+            "userId": int,
+            "id": int,
+            "title": str,
+            "body": str
+        }
+
+        for field, field_type in required_fields.items():
+            if field not in post:
+                raise AssertionError(f"Missing required field: {field}")
+
+            if not isinstance(post[field], field_type):
+                raise AssertionError(
+                    f"Field '{field}' should be {field_type.__name__}, "
+                    f"but got {type(post[field]).__name__}"
+                )
+
+    def validate_post_business_rules(self, post):
+        """
+        Validate business-level rules
+        """
+        if post["id"] <= 0:
+            raise AssertionError("Post ID must be greater than 0")
+
+        if len(post["title"].strip()) == 0:
+            raise AssertionError("Post title must not be empty")
+
+        if len(post["body"].strip()) < 10:
+            raise AssertionError("Post body must be at least 10 characters long")
