@@ -137,3 +137,30 @@ class QALibrary:
 
         if len(post["body"].strip()) < 10:
             raise AssertionError("Post body must be at least 10 characters long")
+
+    # Testing with API post collections
+
+    def validate_posts_collection(self, posts):
+    """
+    Validate a list of post objects returned by the API.
+    """
+    if not isinstance(posts, list):
+        raise AssertionError("Expected a list of posts")
+
+    if len(posts) == 0:
+        raise AssertionError("Posts list is empty")
+
+    for index, post in enumerate(posts):
+        if "id" not in post:
+            raise AssertionError(f"Post at index {index} missing 'id'")
+
+        if "title" not in post:
+            raise AssertionError(f"Post at index {index} missing 'title'")
+
+        if not post["title"]:
+            raise AssertionError(f"Post at index {index} has empty title")
+
+        if not isinstance(post["id"], int):
+            raise AssertionError(
+                f"Post at index {index} has invalid id type: {type(post['id'])}"
+            )
