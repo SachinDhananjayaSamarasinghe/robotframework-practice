@@ -26,6 +26,9 @@ jobs:
           pip install robotframework-requests
           pip install requests
 
+      - name: Set PYTHONPATH
+        run: echo "PYTHONPATH=$GITHUB_WORKSPACE" >> $GITHUB_ENV
+
       - name: Run Robot Framework Smoke + API tests
         run: |
           robot -i smoke -i api tests
