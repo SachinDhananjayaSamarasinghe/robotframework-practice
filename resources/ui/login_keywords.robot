@@ -1,6 +1,6 @@
 *** Settings ***
 Library     Browser
-Variables   pages/login_page.robot
+Variables   ./pages/login_page.robot
 
 *** Keywords ***
 Open Login Page
