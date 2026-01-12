@@ -4,8 +4,10 @@ Resource    ./pages/login_page.robot
 
 *** Keywords ***
 Open Login Page
-    New Browser    chromium
+    New Browser    chromium    headless=${False}
+    New Context
     New Page       ${LOGIN_URL}
+    Wait For Load State    load    timeout=20000
 
 Login With Credentials
     [Arguments]    ${username}    ${password}
