@@ -21,6 +21,6 @@ Login Should Be Successful
 Login Should Fail
     Wait For Elements State    ${ERROR_MESSAGE}   visible
 
-Close Browser Session
-    Take Screenshot
-    Close Browser
+Close Browser Session Safely
+    Run Keyword And Ignore Error    Take Screenshot
+    Run Keyword And Ignore Error    Close Browser
