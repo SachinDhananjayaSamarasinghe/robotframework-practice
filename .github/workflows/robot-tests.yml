@@ -31,7 +31,7 @@ jobs:
 
       - name: Run Robot Framework Smoke + API tests
         run: |
-          robot -i smoke -i api tests
+          robot -i smoke -i api -e ui tests
 
       - name: Upload Robot Framework reports
         uses: actions/upload-artifact@v4
