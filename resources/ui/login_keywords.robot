@@ -1,26 +1,28 @@
 *** Settings ***
 Library     Browser
+Resource    browser_config.robot
 Resource    ./pages/login_page.robot
 
 *** Keywords ***
 Open Login Page
-    New Browser    chromium    headless=${False}
+    New Browser    ${BROWSER}    headless=${HEADLESS}    slowMo=${SLOW_MO}
     New Context
     New Page       ${LOGIN_URL}
-    Wait For Load State    load    timeout=20000
+    Wait For Elements State    id=username    visible
 
 Login With Credentials
     [Arguments]    ${username}    ${password}
-    Fill Text      ${USERNAME_INPUT}    ${username}
-    Fill Text      ${PASSWORD_INPUT}    ${password}
-    Click          ${SUBMIT_BUTTON}
+    Fill Text      id=username    ${username}
+    Fill Text      id=password    ${password}
+    Click          id=submit
 
 Login Should Be Successful
-    Wait For Elements State    ${SUCCESS_TEXT}    visible
+    Wait For Elements State    text=Logged In Successfully    visible
+    Take Screenshot
 
 Login Should Fail
-    Wait For Elements State    ${ERROR_MESSAGE}   visible
+    Wait For Elements State    id=error    visible
+    Take Screenshot
 
 Close Browser Session Safely
-    Run Keyword And Ignore Error    Take Screenshot
     Run Keyword And Ignore Error    Close Browser
