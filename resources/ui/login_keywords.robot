@@ -5,10 +5,10 @@ Resource    ./pages/login_page.robot
 
 *** Keywords ***
 Open Login Page
-    New Browser    ${BROWSER}    headless=${HEADLESS}    slowMo=${SLOW_MO}
+    New Browser    ${BROWSER}    headless=${HEADLESS}    slowMo=${SLOW_MO}    args=--disable-dev-shm-usage
     New Context
-    New Page       ${LOGIN_URL}
-    Wait For Elements State    id=username    visible
+    New Page    ${LOGIN_URL}    waitUntil=domcontentloaded
+    Wait For Elements State    id=username    visible    timeout=15s
 
 Login With Credentials
     [Arguments]    ${username}    ${password}
@@ -24,5 +24,6 @@ Login Should Fail
     Wait For Elements State    id=error    visible
     Take Screenshot
 
-Close Browser Session Safely
+Close Browser Session
+    Run Keyword And Ignore Error    Take Screenshot
     Run Keyword And Ignore Error    Close Browser
