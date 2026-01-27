@@ -8,7 +8,7 @@ ${VALID_PASSWORD}    Password123
 
 *** Test Cases ***
 Valid Login Should Succeed
-    [Tags]    ui
+    [Tags]    ui    smoke
     Open Login Page
     Login With Credentials    ${VALID_USERNAME}    ${VALID_PASSWORD}
     Login Should Be Successful
