@@ -1,6 +1,6 @@
 *** Settings ***
 Resource        ../../resources/ui/login_keywords.robot
-Test Teardown   Close Browser Session Safely
+Test Teardown   Close Browser Session
 
 *** Variables ***
 ${VALID_USERNAME}    student
