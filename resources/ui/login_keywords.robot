@@ -5,7 +5,7 @@ Resource    ./pages/login_page.robot
 
 *** Keywords ***
 Open Login Page
-    New Browser    ${BROWSER}    headless=${HEADLESS}    slowMo=${SLOW_MO}    args=--disable-dev-shm-usage
+    New Browser    ${BROWSER}    headless=${HEADLESS}    slowMo=${SLOW_MO}    args=["--disable-dev-shm-usage"]
     New Context
     New Page    ${LOGIN_URL}    waitUntil=domcontentloaded
     Wait For Elements State    id=username    visible    timeout=15s
