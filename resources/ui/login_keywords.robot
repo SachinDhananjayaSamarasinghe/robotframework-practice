@@ -29,4 +29,5 @@ Close Browser Session
     Run Keyword And Ignore Error    Close Browser
 
 Capture Screenshot On Failure
-    Run Keyword If Test Failed    Take Screenshot
+    [Arguments]    ${test_name}=${EMPTY}    ${test_status}=${EMPTY}
+    Run Keyword If    '${test_status}' == 'FAIL'    Take Screenshot
