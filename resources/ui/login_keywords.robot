@@ -27,3 +27,6 @@ Login Should Fail
 Close Browser Session
     Run Keyword And Ignore Error    Take Screenshot
     Run Keyword And Ignore Error    Close Browser
+
+Capture Screenshot On Failure
+    Run Keyword If Test Failed    Take Screenshot
