@@ -23,21 +23,24 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install robotframework
+          pip install robotframework-browser
           pip install robotframework-requests
           pip install requests
+          rfbrowser init
 
       - name: Set PYTHONPATH
         run: echo "PYTHONPATH=$GITHUB_WORKSPACE" >> $GITHUB_ENV
 
-      - name: Run Robot Framework Smoke + API tests
+      - name: Run API tests
         run: |
-          robot -i smoke -i api -e ui tests
+          robot -i api -d reports/api tests
+
+      - name: Run UI tests
+        run: |
+          robot -i ui -d reports/ui tests
 
       - name: Upload Robot Framework reports
         uses: actions/upload-artifact@v4
         with:
           name: robot-reports
-          path: |
-            output.xml
-            report.html
-            log.html
+          path: reports/
